@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch Practice</title>
+</head>
+<style>
+    .container{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: rgb(184, 49, 49);
+}
+.start , .stop , .reset{
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #ffff;
+    background-color: rgb(255, 217, 0);
+    border: none;
+    font-size: 20px;
+    text-shadow: 2px 3px 5px #000;
+    cursor: pointer;
+    margin: 10px 10px;
+}
+.start:hover , .stop:hover , .reset:hover{
+    transform: translateY(-5px);
+    box-shadow: 3px 4px 8px #333;
+    transition: 0.6s ease;
+}
+.time , .time2{
+    color: #fff;
+    font-size: 100px;
+}
+
+</style>
+<body>
+    <div class="container">
+        <div class="time">
+            00:00:00
+        </div>
+        <div class="options">
+            <button class="start">Start</button>
+            <button class="stop">Stop</button>
+            <button class="reset">Reset</button>
+        </div>
+        <div class="time2">
+            00:00:00
+        </div>
+    </div>
+
+
+    <script>
+        var time = document.querySelector('.time');
+        var time2 = document.querySelector('.time2');
+        var start = document.querySelector('.start');
+        var stop = document.querySelector('.stop');
+        var reset = document.querySelector('.reset');
+        var s=0, ms = 0, m =0;
+        var counter=1;
+
+        const clr = () => {
+            return time.textContent = "00:00:00"
+        }
+
+        start.addEventListener('click', function(){
+           if(counter==1){
+            counter = setInterval(run, 10);
+           }
+           function run(){
+               time.textContent = m + " : " + s + " : " + ms;
+               ms++;
+                if(ms==100){
+                    s++;
+                    ms=00;
+                }
+                if(s==5){
+                    m++;
+                    s=00;
+                    ms=00;
+                }
+           }
+        });
+
+        stop.addEventListener('click', function(){
+            clearInterval(counter);
+            counter = 1;
+        })
+
+        const stp = () => {
+            clearInterval(counter);
+            counter =1;
+            time2.textContent = m + " : " + s + " : " + ms;
+            clr();
+        }
+
+        reset.addEventListener('click', stp);
+        
+        
+       
+
+    </script>
+
+
+
+
+</body>
+</html>

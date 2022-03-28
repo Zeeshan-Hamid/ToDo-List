@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="time">
+        00:00:00
+    </div>
+    <div class="options">
+        <button class="start">Start</button>
+        <button class="stop">Stop</button>
+        <button class="reset">Reset</button>
+    </div>
+    <div class="time2">
+        00:00:00
+    </div>
+</div>
+
+<script>
+
+    var ms=0, s =0, m=0;
+    var counter = 0;
+    var start = document.querySelector('.start');
+    var stop = document.querySelector('.stop');
+    var reset = document.querySelector('.reset');
+    var time = document.querySelector('.time');
+    var time2 = document.querySelector('.time2');
+
+    const result = () => {
+       return time2.textContent = time.textContent = m + " : " +  s + " : " + ms;
+    
+    }
+
+    start.addEventListener('click', function(){
+      if(!counter){
+        counter = setInterval(run, 10);
+      }
+
+        function run(){
+            time.textContent = m + " : " +  s + " : " + ms;
+            ms++;  if(ms==100){
+            ms=0;
+            s++;
+        }if( s==60){ ms=0; s=0; m++;
+        }
+        }
+    });
+
+
+
+    reset.addEventListener('click', function(){
+        clearInterval(counter);
+        result();
+        time.textContent = "00 : 00 : 00";
+      
+        s=0;
+        ms=0;
+        m=0;
+        counter=false;
+    });
+
+    function stop_function(){
+        clearInterval(counter);
+        counter=false;
+    }
+
+    stop.addEventListener('click', stop_function);
+
+
+
+
+</script>
+
+
+</body>
+</html>

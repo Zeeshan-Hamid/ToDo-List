@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm Project</title>
+
+</head>
+<style>
+    body{
+        background-color: #fff;
+    }
+</style>
+<body>
+   
+    <div class="time">00:00:00</div>
+    <br><br>
+    <div class="alarm_time">00:00:00</div>
+    <br><br>
+    <div class="tex">Not Yet!!</div>
+
+
+
+
+    <script>
+
+//var ntime  = document.querySelector('.time');
+var alarm = document.querySelector('.alarm_time');
+var msg = document.querySelector('.tex');
+
+var h = window.prompt("Enter hours");
+var m = window.prompt("Enter Minutes");
+var s = window.prompt("Enter seconds");
+
+const current_date = () => {
+    const d = new Date();
+    let hour = d.getHours();
+    let min = d.getMinutes();
+    let sec = d.getSeconds();
+
+    document.querySelector('.time').textContent = hour + " : " + min + " : "  + sec;
+    alarm.textContent = h + " : " + m + " : " + s;
+    setTimeout(current_date, 1000);
+}
+
+    current_date();
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm Practice</title>
+</head>
+
+<style>
+    .container{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: rgb(184, 49, 49);
+}
+.start , .stop , .reset{
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #ffff;
+    background-color: rgb(255, 217, 0);
+    border: none;
+    font-size: 20px;
+    text-shadow: 2px 3px 5px #000;
+    cursor: pointer;
+    margin: 10px 10px;
+}
+.start:hover , .stop:hover , .reset:hover{
+    transform: translateY(-5px);
+    box-shadow: 3px 4px 8px #333;
+    transition: 0.6s ease;
+}
+.time , .time2, .time3{
+    color: #fff;
+    font-size: 100px;
+}
+
+</style>
+<body>
+    <div class="container">
+        <div class="time">
+            00:00:00
+        </div>
+        <div class="options">
+            <button class="start">Start</button>
+            <button class="stop">Stop</button>
+            <button class="reset">Reset</button>
+        </div>
+        <div class="time2">
+            00:00:00
+        </div>
+        <div class="time3">
+            Not Yet
+        </div>
+        <audio controls>
+            <source id="idd" src="./Alarm-Fast-High-Pitch-A1-www.fesliyanstudios.com.mp3" type="audio/mpeg">
+          </audio>
+    </div>
+
+
+    <script>
+        var time  = document.querySelector('.time');
+        var alarm = document.querySelector('.time2');
+        var msg = document.querySelector('.time3');
+        var hour = window.prompt("Enter the hours");
+        var min = window.prompt("Enter minutes");
+        var sec = window.prompt("Enter seconds");
+        var aud = document.getElementById('idd');
+
+        const setDate = () =>{
+            const d = new Date();
+            let h = d.getHours();
+            let m = d.getMinutes();
+            let s = d.getSeconds();
+            time.textContent = h + ":" + m + ":" + s;
+            alarm.textContent = hour + ":" + min + ":" + sec;
+            if((h==hour)&& (min==m)&& (s==sec)){
+                msg.textContent = "Bling!"
+                aud.play();
+            }
+            setTimeout(setDate, 1000);
+        }
+
+        setDate();
+    </script>
+
+
+    
+</body>
+</html>

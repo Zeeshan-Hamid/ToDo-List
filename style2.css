@@ -1,0 +1,18 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.time {
+color: white;
+font-size: 30px;
+}
+
+.text   {
+    font-size: 20px;
+    color: #fff;
+
+}

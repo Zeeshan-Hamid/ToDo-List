@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+
+<style>
+    body{
+       
+        
+       /* background-color: rgb(117, 93, 255);*/
+       background-color: mediumpurple;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+       
+    }
+
+    #input{
+        border: none;
+        border-radius: 50px;
+        padding: 20px 40px;
+        font-size: 18px;
+        
+    }
+    #input:focus{
+        border: 2px solid #ddd;
+        box-shadow: 2px 3px 5px #333;
+    }
+    button, .del{
+        color: #fff;
+        padding: 13px 22px;
+        border-radius: 10px;
+        border: none;
+        background-color: #111;
+        margin: 10px 110px;
+        font-size: 14px;
+        cursor: pointer;
+
+    }
+    button.btn_del{
+        margin: 10px;
+        padding: 8px 13px;
+    }
+    
+    ol > li{
+        color: #fff;
+        font-size: 21px;
+    }
+    .ini{
+        padding: 10px 20px;
+        color: #fff;
+    }
+    .container{
+        font-size: 22px;
+        color: #fff;
+    }
+    .span{
+        font-weight: 700;
+    }
+
+</style>
+
+<body>
+    <div class="container">The random background color is <span class="span">Medium Purple</span></div>
+    <button class="btn_rand">Change color</button>
+        <form>
+
+            <input type="text" id="input" placeholder="Enter the input">
+            <br>
+            <button id="submit">Submit</button>
+            
+            <ol class="list">
+
+            </ol>
+            <br>
+        </form>
+            
+            
+       
+
+
+        <script>
+                 var body = document.querySelector('body');
+           var form = document.querySelector('form');
+            var input = document.querySelector('#input');
+            var submit = document.querySelector('#submit');
+            var list  = document.querySelector('ol');
+            var del = document.querySelector('#del');
+            var lis = document.querySelector('li');
+           
+            const del_all =(newList) =>{
+                const del = document.createElement('button');
+                del.classList.add('ini');
+                del.value = "Delete All";
+                body.append(del);
+                del.addEventListener('click', function(){
+                    newList.remove();
+                    return;
+                })
+            }
+
+            const li_create = () =>{
+                return document.createElement('li');
+            }
+
+           
+
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                
+                todo();
+                input.value ="";
+            })
+
+            const todo = () => {
+                if(input.value===""){
+                    alert("Enter value");
+                } else if(input.value==="EXIT" || input.value === "exit"){
+                    alert('Okay! Exiting');
+                    return;
+                }
+                else{
+                 const newList = li_create();
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('btn_del');
+                const newLine = document.createElement('br');
+                deleteBtn.textContent = "Delete";
+                const value = input.value;
+                newList.textContent = value;
+                list.append(newList);
+                newList.append(newLine, deleteBtn);
+                //del_all(newList);
+                
+            }
+        }
+            
+
+            list.addEventListener('click', function(e){
+               
+                if(e.target.nodeName == 'BUTTON'){
+                    e.target.closest('LI').remove();
+                }
+            })
+
+
+            const arr = ["Orange", "red", "Pink", "Blue", "Purple"];
+            const span = document.querySelector('.span');
+            const btn_rand = document.querySelector('.btn_rand');
+           
+            
+            btn_rand.addEventListener('click', function(){
+                function rand() {
+                    return Math.floor(Math.random() * arr.length);
+                  }
+                const rnd = rand();
+              
+             console.log(rnd);
+              body.style.backgroundColor = arr[rnd];
+              console.log(rnd);
+              span.textContent = arr[rnd];
+              console.log(rnd);
+              
+            });
+
+        </script>
+      
+</body>
+</html>
